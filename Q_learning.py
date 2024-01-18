@@ -1,4 +1,4 @@
-# Q_learning.py
+
 import numpy as np
 import random
 
@@ -16,11 +16,11 @@ class QLearningAgent:
     ):
         self.states = [
             (x, y) for x in range(-200, 201) for y in range(-200, 201)
-        ]  # Example grid
+        ]  
         self.actions = ["up", "down", "left", "right"]
         self.target_state = target_state
 
-        # Initialize Q-table
+        
         self.q_table = {
             state: {action: 0 for action in self.actions} for state in self.states
         }
@@ -34,11 +34,9 @@ class QLearningAgent:
         self.exploration_decay_rate = exploration_decay_rate
 
     def get_reward(self, state):
-        """Returns the reward for the current state"""
         return 100 if state == self.target_state else -1
 
     def update_q_table(self, state, new_state, action, reward):
-        """Updates the Q-table based on the action taken and reward received"""
         max_future_q = max(self.q_table[new_state].values())
         current_q = self.q_table[state][action]
 
@@ -73,7 +71,7 @@ class QLearningAgent:
     def train(self):
         """Training loop"""
         for episode in range(1000):
-            state = (0, 0)  # Starting position
+            state = (0, 0)  
 
             done = False
             while not done:
