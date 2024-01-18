@@ -12,7 +12,7 @@ def move_turtle(action):
 
     if (
         action == "up" and y < 190
-    ):  # Slightly less than the boundary to prevent overshooting
+    ):  
         robot.setheading(90)
         robot.forward(10)
     elif action == "down" and y > -190:
@@ -28,12 +28,12 @@ def move_turtle(action):
 
 def draw_target():
     target.penup()
-    target.goto(50, 100)  # Top-left corner of the rectangle
+    target.goto(50, 100) 
     target.pendown()
     for _ in range(2):
-        target.forward(40)  # Width of the rectangle
+        target.forward(40)  
         target.right(90)
-        target.forward(80)  # Height of the rectangle
+        target.forward(80) 
         target.right(90)
     target.penup()
 
@@ -49,10 +49,10 @@ colors = ["red", "green", "blue", "yellow", "purple", "orange"]
 
 
 def train_robot(agent, step_limit=200):
-    success_count = 0  # Counter for successful episodes
+    success_count = 0 
 
     for episode in range(1000):
-        state = (0, 0)  # Starting position
+        state = (0, 0)  
         robot.goto(0, 0)
         color = random.choice(colors)
         robot.pencolor(color)
@@ -67,7 +67,7 @@ def train_robot(agent, step_limit=200):
             )
 
             if check_target():
-                reward = 100  # Positive reward for reaching the target
+                reward = 100  
                 agent.update_q_table(state, new_state, action, reward)
                 success_count += 1
                 print(
@@ -75,27 +75,27 @@ def train_robot(agent, step_limit=200):
                 )
                 break
             else:
-                reward = -1  # Negative reward for each step
+                reward = -1 
 
-            # Update the Q-table
+            
             agent.update_q_table(state, new_state, action, reward)
             state = new_state
 
             if step == step_limit - 1:
                 reward = (
                     -100
-                )  # Additional punishment for not reaching the target in time
+                )  
                 agent.update_q_table(state, new_state, action, reward)
-                robot.goto(0, 0)  # Reset turtle's position
-                state = (0, 0)  # Also reset the state
+                robot.goto(0, 0)  
+                state = (0, 0)  #
 
-        # Update exploration rate in the agent
+        
         agent.exploration_rate = max(
             agent.min_exploration_rate,
             agent.exploration_rate * agent.exploration_decay_rate,
         )
 
-    # Save the Q-table to a file after training is complete
+    
     with open("q_table.pkl", "wb") as f:
         pickle.dump(agent.q_table, f)
 
@@ -106,10 +106,10 @@ def train_robot(agent, step_limit=200):
     )
 
 
-# Setting up the screen and turtle
+
 window = turtle.Screen()
 window.title("TurtleSim Robot Simulation")
-window.screensize(canvwidth=400, canvheight=400)  # Adjust the drawing area size
+window.screensize(canvwidth=400, canvheight=400) #to prevent turtlesim to run off from the screen
 window.setup(width=500, height=500)
 
 robot = turtle.Turtle()
@@ -120,7 +120,7 @@ target.color("blue")
 target.hideturtle()
 draw_target()
 
-# Initialize QLearningAgent and start training
+
 agent = QLearningAgent()
 train_robot(agent)
 
