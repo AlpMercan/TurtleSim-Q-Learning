@@ -6,3 +6,4 @@ https://www.youtube.com/watch?v=loX59NzA9VE
 
 ![resim](https://github.com/AlpMercan/TurtleSim-Q-Learning/assets/112685013/062e9ec3-9987-4449-bd40-8c76fd98e2e5)
 
+![resim](https://github.com/AlpMercan/TurtleSim-Q-Learning/assets/112685013/fe3c5d31-5387-44ea-8364-c8f6772bdb4f)
